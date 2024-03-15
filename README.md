@@ -357,20 +357,3 @@ cannot build and distribute applications using Pennant for Filament's source cod
 
 If you're uncertain about which license is appropriate for your needs, don't hesitate to reach out. Contact me at
 maartenpaauw@gmail.com, and I'll be glad to assist you.
-
-## Changelog
-
-For the latest updates and changes, refer to the [CHANGELOG](CHANGELOG.md) file.
-
-## Contributing
-
-Interested in contributing? Check out the [CONTRIBUTING](.github/CONTRIBUTING.md) guidelines for details on how to get involved.
-
-## Security Vulnerabilities
-
-For security vulnerabilities, please review our [security policy](../../security/policy) to learn how to report any issues.
-
-## Credits
-
-- [Maarten Paauw](https://github.com/maartenpaauw)
-- [All Contributors](../../contributors)
