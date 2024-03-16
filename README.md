@@ -19,7 +19,7 @@ Filament, you can perform these actions directly from Filament's user-friendly i
 
 Check out this video demonstrating how straightforward it is to activate and deactivate feature flags using Filament:
 
-[![Demo video](https://user-images.githubusercontent.com/4550875/264145719-ae62bac9-3a7b-4513-8d15-93a965ca37e7.png)](https://www.youtube.com/watch?v=9quhtxAgHr4)
+[![Demo video](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/video.png)](https://www.youtube.com/watch?v=9quhtxAgHr4)
 
 ## Features
 
@@ -40,39 +40,39 @@ Pennant for Filament comes packed with a range of features to enhance your exper
 
 Take a glimpse of Pennant for Filament in action:
 
-![Displaying all Pennant feature flags of the default scope](https://user-images.githubusercontent.com/4550875/262096049-08c939c4-b2a4-49bc-b66b-f44ce9e3d44a.png)
+![Displaying all Pennant feature flags of the default scope](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/default-scope-resource.png)
 
 _Displaying all Pennant feature flags of the default scope._
 
-![Showcasing an overview of feature flags associated with a company](https://user-images.githubusercontent.com/4550875/262096112-84cc0134-c725-4c62-8638-8f3e67d63e51.png)
+![Showcasing an overview of feature flags associated with a company](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/relation-manager.png)
 
 _Showcasing an overview of feature flags associated with a company._
 
-![Deactivating a feature flag](https://user-images.githubusercontent.com/4550875/262096297-1412c2f8-05e3-49ad-991b-74a91aa6cb14.png)
+![Deactivating a feature flag](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/deactivate.png)
 
 _Deactivating a feature flag._
 
-![Activating a rich feature flag](https://user-images.githubusercontent.com/4550875/262096341-726717eb-ff95-40b9-aa26-f092177e2895.png)
+![Activating a rich feature flag](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/activate-rich-feature-flag.png)
 
 _Activating a rich feature flag._
 
-![Filtering feature flags](https://user-images.githubusercontent.com/4550875/262096418-5d89adde-000d-4dd9-bc73-b335242b9a54.png)
+![Filtering feature flags](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/filter-active-feature-flags.png)
 
 _Filtering feature flags._
 
-![Filtering rich feature flags](https://user-images.githubusercontent.com/4550875/262096468-bd127cfe-e410-410d-930f-db1b5521b935.png)
+![Filtering rich feature flags](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/filter-rich-feature-flags.png)
 
 _Filtering rich feature flags._
 
-![Translated feature flags](https://user-images.githubusercontent.com/4550875/262096519-8d03452d-4cb5-4e57-a81e-fa05dce95242.png)
+![Translated feature flags](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/dutch-translations.png)
 
 _Translated feature flags._
 
-![Feature flags that cannot be deactivated](https://user-images.githubusercontent.com/4550875/264147411-a9933ce4-fc78-4d44-8d05-6b780b506d3b.png)
+![Feature flags that cannot be deactivated](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/policy.png)
 
 _Feature flags that cannot be deactivated._
 
-![Overview of feature flags in dark mode](https://user-images.githubusercontent.com/4550875/262096747-8829fe7d-0740-4914-bbdc-fb7d9c292168.png)
+![Overview of feature flags in dark mode](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/darkmode.png)
 
 _Overview of feature flags in dark mode._
 
