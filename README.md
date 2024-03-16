@@ -1,5 +1,9 @@
 # Pennant for Filament
 
+<p class="filament-hidden">
+  <img src="https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/banner.jpg" alt="Pennant for Filament">
+</p>
+
 ## Introduction
 
 Pennant for Filament is a powerful package that seamlessly integrates feature flags from Laravel Pennant into the
