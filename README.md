@@ -182,7 +182,8 @@ composer config http-basic.pennant-for-filament.composer.sh your_account_email y
 You can see your credentials in your [Anystack.sh](https://anystack.sh/) account: Anystack -> Transactions -> View
 details next to Pennant for Filament.
 
-> Note: Make sure the `auth.json` file is in .gitignore to avoid leaking credentials into your git history.
+> [!IMPORTANT]
+> Make sure the `auth.json` file is in .gitignore to avoid leaking credentials into your git history.
 
 If you are using [Laravel Forge](http://forge.laravel.com/), you don't need to create the `auth.json `file manually.
 Instead, you can set the credentials on the Composer Package Authentication screen of your server.
@@ -294,6 +295,7 @@ class FeaturePolicy
 }
 ```
 
+> [!WARNING]
 > Ensure that you're using the `Feature` model from the package and not the `Feature` facade from Pennant itself.
 
 ### Translations
@@ -331,7 +333,8 @@ To translate feature names, create a translation file in the `lang` directory (e
 }
 ```
 
-> **note** When the `HasLabel` interface is implemented, the return value of method `getLabel` is used as feature name.
+> [!TIP]
+> When the `HasLabel` interface is implemented, the return value of method `getLabel` is used as feature name.
 
 ## Need Assistance?
 
