@@ -85,7 +85,7 @@ _Overview of feature flags in dark mode._
 **Thank you for choosing Pennant for Filament!**
 
 Here's a comprehensive guide to installing and utilizing this plugin. If you encounter any issues, have questions, need
-support, or want to request a feature, please feel free to contact me at maartenpaauw@gmail.com.
+support, or want to request a feature, please feel free to contact me at filamentphp@paauw.dev.
 
 ### Requirements
 
@@ -338,7 +338,7 @@ To translate feature names, create a translation file in the `lang` directory (e
 
 ## Need Assistance?
 
-Questions, bugs, feature requests, or suggestions? Feel free to contact me at maartenpaauw@gmail.com. Your feedback is
+Questions, bugs, feature requests, or suggestions? Feel free to contact me at filamentphp@paauw.dev. Your feedback is
 invaluable.
 
 ## Licensing Information
@@ -363,4 +363,4 @@ cannot build and distribute applications using Pennant for Filament's source cod
 ### Questions About Licensing?
 
 If you're uncertain about which license is appropriate for your needs, don't hesitate to reach out. Contact me at
-maartenpaauw@gmail.com, and I'll be glad to assist you.
+filamentphp@paauw.dev, and I'll be glad to assist you.
