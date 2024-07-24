@@ -1,7 +1,9 @@
 # Pennant for Filament
 
 <p class="filament-hidden">
-  <img src="https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/banner.jpg" alt="Pennant for Filament">
+  <a href="https://checkout.anystack.sh/pennant-for-filament">
+    <img src="https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/banner.jpg" alt="Pennant for Filament">
+  </a>
 </p>
 
 ## Introduction
