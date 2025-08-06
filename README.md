@@ -78,6 +78,14 @@ _Translated feature flags._
 
 _Feature flags that cannot be deactivated._
 
+![Feature flags user menu item](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/user-menu-item.png)
+
+_Feature flags user menu item._
+
+![Feature flags tenant menu item](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/tenant-menu-item.png)
+
+_Feature flags tenant menu item._
+
 ![Overview of feature flags in dark mode](https://raw.githubusercontent.com/maartenpaauw/pennant-for-filament-docs/main/assets/screenshots/darkmode.png)
 
 _Overview of feature flags in dark mode._
@@ -93,15 +101,15 @@ support, or want to request a feature, please feel free to contact me at filamen
 
 Pennant for Filament requires the following components:
 
-- PHP `^8.1`
-- Laravel `^10.0` or `^11.0`
-- Laravel Pennant `^1.6`
-- Filament `^3.2.39`
+- PHP `^8.2`
+- Laravel `^11.0` or `^12.0`
+- Laravel Pennant `^1.16`
+- Filament `^4.0`
 
 Additionally, make sure you have defined at least one feature flag in your project. For more information, refer to the
-official Laravel [documentation](https://laravel.com/docs/10.x/pennant#defining-features).
+official Laravel [documentation](https://laravel.com/docs/12.x/pennant#defining-features).
 
-### Installation steps
+### Installation Steps
 
 #### Install with Composer
 
@@ -156,7 +164,7 @@ The package offers English and Dutch translations. You can publish the language 
 php artisan vendor:publish --tag="pennant-for-filament-translations"
 ```
 
-#### Adding to panel
+#### Adding to a Panel
 
 Integrate Pennant for Filament into your panel by instantiating the plugin class and passing it to the plugin method:
 
@@ -166,7 +174,7 @@ public function panel(Panel $panel): Panel
     return $panel
     // ...
     ->plugin(
-        \Maartenpaauw\Filament\Pennant\FilamentPennantPlugin::make(),
+        \Maartenpaauw\Filament\Pennant\Infrastructure\Filament\FilamentPennantPlugin::make(),
     );
 }
 ```
@@ -192,10 +200,34 @@ Instead, you can set the credentials on the Composer Package Authentication scre
 
 ## Setup
 
-### Resource
+### Null Scope Feature Flags Page
 
-Once you've added `->plugin(FilamentPennantPlugin::make())` to your panel, a resource will automatically list the
-feature flags of the logged-in user. To disable this resource, you can use the `->withoutResource()` method:
+In addition to user-specific and tenant-specific feature flags, you may want to manage global feature flags that are not
+tied to any specific user or model. These are known as "null scope" feature flags in Laravel Pennant.
+
+The package provides a dedicated page for viewing and managing these global feature flags. Unlike the user and tenant
+feature flag pages, this page is not automatically registered by the plugin and must be manually added to your panel.
+
+To enable the null scope feature flags page, add the `ListAllFeatureFlagsForNullScopePage` class to your panel's pages:
+
+```php
+public function panel(Panel $panel): Panel
+{
+    return $panel
+    ->plugin(
+        \Maartenpaauw\Filament\Pennant\Infrastructure\Filament\FilamentPennantPlugin::make(),
+    )
+    ->pages([
+        \Maartenpaauw\Filament\Pennant\Infrastructure\Filament\Pages\ListAllFeatureFlagsForNullScopePage::class,
+    ]);
+}
+```
+
+### Disable Current User Feature Flags
+
+This package automatically adds a feature flags menu item to the user's menu and displays feature flags in a table
+format. If you wish to hide this menu item and its associated page, you can disable this functionality when configuring
+the plugin.
 
 ```php
 public function panel(Panel $panel): Panel
@@ -203,40 +235,54 @@ public function panel(Panel $panel): Panel
     return $panel
     // ...
     ->plugin(
-        \Maartenpaauw\Filament\Pennant\FilamentPennantPlugin::make()
-            ->withoutResource(),
+        \Maartenpaauw\Filament\Pennant\Infrastructure\Filament\FilamentPennantPlugin::make()
+            ->withoutUserFeatureFlags(),
     );
 }
 ```
 
-### Relation Manager
+### Disable Current Tenant Feature Flags
 
-While not mandatory, the relation manager is recommended for easy activation and deactivation of Pennant feature flags
-for individual users. To use it, add a trait to the scope (e.g. `User`) model:
+This package automatically adds a feature flags menu item to the tenant's menu and displays feature flags in a table
+format, when the plugin detects the panel has tenancy configured. If you wish to hide this menu item and its associated
+page, you can disable this functionality when configuring the plugin.
 
 ```php
-class User extends Authenticatable
+public function panel(Panel $panel): Panel
 {
+    return $panel
     // ...
-    use \Maartenpaauw\Filament\Pennant\Concerns\HasFeatures;
-    use \Laravel\Pennant\Concerns\HasFeatures;
-    
-    // ...
+    ->plugin(
+        \Maartenpaauw\Filament\Pennant\Infrastructure\Filament\FilamentPennantPlugin::make()
+            ->withoutTenantFeatureFlags(),
+    );
 }
 ```
 
-Finally, add the relation manager to the `getRelations()` array:
+### Display Record's Feature Flags
+
+When working with feature flags that are scoped to specific records (like users, teams, or other models), you may want
+to display these feature flags directly on the record's edit or view pages. This provides a convenient way to see and
+manage feature flags associated with a particular record.
+
+To display a record's feature flags, you can add the `ListAllFeatureFlagsForScopeWidget` as a footer widget in your
+resource pages. This widget will show a table of all feature flags and their status for the current record.
+
+For example, to display feature flags on an `EditUser` or `ViewUser` page, add the following method to your resource
+page class:
 
 ```php
-public static function getRelations(): array
+protected function getFooterWidgets(): array
 {
     return [
-        \Maartenpaauw\Filament\Pennant\Resources\FeatureResource\RelationManagers\FeatureRelationManager::class,
+        Maartenpaauw\Filament\Pennant\Infrastructure\Filament\Widgets\ListAllFeatureFlagsForScopeWidget::make([
+            'scope' => $this->getRecord(),
+        ])
     ];
 }
-  ```
+```
 
-### Rich features
+### Rich Features
 
 For projects that employ rich feature flags, enabling users to select values during feature flag activation is
 essential. By implementing the `RichFeature` interface and providing the desired options, a select input will appear
@@ -251,7 +297,7 @@ namespace App\Features;
 
 use Illuminate\Support\Collection;
 
-class PurchaseButton implements \Maartenpaauw\Filament\Pennant\Contracts\RichFeature
+final readonly class PurchaseButton implements \Maartenpaauw\Filament\Pennant\Infrastructure\Pennant\RichFeature
 {
     public function resolve(mixed $scope): string
     {
@@ -272,54 +318,54 @@ class PurchaseButton implements \Maartenpaauw\Filament\Pennant\Contracts\RichFea
 ### Policy
 
 If you need to restrict feature flag activation or deactivation to specific users, you can implement
-a [Policy](https://laravel.com/docs/10.x/authorization#creating-policies). To begin, create a `FeaturePolicy` and
+a [Policy](https://laravel.com/docs/12.x/authorization#creating-policies). To begin, create a `FeaturePolicy` and
 include it in the `$policies` array as you would with any other policy.
 
 Since feature flags typically involve activation and deactivation, the custom methods `activate` and `deactivate` are
-utilized:
+used:
 
 ```php
 <?php
 
 namespace App\Policies;
 
+use Maartenpaauw\Filament\Pennant\Domain\FeatureFlag;
+
 class FeaturePolicy
 {
-    public function activate(User $user, \Maartenpaauw\Filament\Pennant\Models\Feature $feature): bool
+    public function activate(User $user, FeatureFlag $featureFlag): bool
     {
         return true;
     }
 
-    public function deactivate(User $user, \Maartenpaauw\Filament\Pennant\Models\Feature $feature): bool
+    public function deactivate(User $user, FeatureFlag $featureFlag): bool
     {
         return false;
     }
 }
 ```
 
-> [!WARNING]
-> Ensure that you're using the `Feature` model from the package and not the `Feature` facade from Pennant itself.
-
 ### Translations
 
 Pennant for Filament offers translation support for multiple languages. While English and Dutch are included by default,
 you can extend this support for other languages. For instance, to add Spanish translations, create a `labels.php` file
-under `lang/vendor/pennant-for-filament/es/` with the necessary translations:
+under `lang/vendor/pennant-for-filament/fr/` with the necessary translations:
 
 ```php
 <?php
 
 return [
-    'activate' => 'Activar',
-    'active' => 'Activa',
-    'deactivate' => 'Desactivar',
-    'feature' => 'Característica',
-    'features' => 'Características',
-    'inactive' => 'Inactivo',
-    'name' => 'Nombre',
-    'rich_features' => 'Características ricas',
-    'status' => 'Estado',
-    'value' => 'Valor',
+    'activate' => 'Activer',
+    'active' => 'Actif',
+    'activated' => 'Activé',
+    'deactivate' => 'Désactiver',
+    'deactivated' => 'Désactivé',
+    'feature_flags' => 'Indicateurs de fonctionnalité',
+    'inactive' => 'Inactif',
+    'name' => 'Nom',
+    'rich_feature_flags' => 'Indicateurs de fonctionnalité enrichis',
+    'status' => 'Statut',
+    'value' => 'Valeur',
 ];
 ```
 
