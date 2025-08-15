@@ -1,9 +1,10 @@
 # Changelog
 
-## 2.0.0-rc.1 - 2025-08-06
+## 2.0.0 - 2025-08-15
 
 ### Added
 
+- Support for Filament version 4
 - Translation keys for `activated` and `deactivated` states
 - Dedicated Filament pages for viewing feature flags:
   - Current tenant's feature flags
@@ -29,6 +30,7 @@
 
 ### Removed
 
+- Support for Filament version 3
 - **Translation keys:**
   - `feature` translation key
 - **Traits and dependencies:**
