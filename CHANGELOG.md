@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.0.1 - 2025-12-30
+
+### Added
+
+- Support for PHP version 8.5.
+- Support for Webmozart's assert version 2.
+
 ## 2.0.0 - 2025-08-15
 
 ### Added
