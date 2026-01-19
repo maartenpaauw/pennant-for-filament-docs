@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.2 - 2026-01-19
+
+### Added
+
+- Support for Filament version 5.
+
 ## 2.0.1 - 2025-12-30
 
 ### Added
